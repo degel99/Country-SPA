@@ -1,4 +1,11 @@
 
-<country-search-input placeholder="Buscar capital de mi país" (emitValue)="searchValueCapital($event)"/>
+<country-search-input placeholder="Buscar capital de mi país" (emitValue)="query.set($event)"/>
 
-<app-country-list />
+<app-country-list
+  [countries]="countryResource.value() ?? []"
+  [errorMessage]="countryResource.error()"
+  [isEmpty]="countryResource.value()?.length === 0"
+  [isLoading]="countryResource.isLoading()"
+/>
+
+
